@@ -6,5 +6,8 @@ declare module "styled-components" {
 		boardColor: string;
 		cardColor: string;
 		titleColor: string;
+		highlightColor: string;
+		highlightColor2: string;
+		isDraggingColor: string;
 	}
 }

@@ -5,6 +5,11 @@ import styled from "styled-components";
 import { toDoState } from "./atoms";
 import { useRecoilState } from "recoil";
 import BoardFrame from "./components/Board";
+//challenge
+//1. category 추가
+//2. Delete todo
+//3. todo board drag and reorder
+//4. localstorage
 
 const Wrapper = styled.div`
 	display: flex;
@@ -60,19 +65,21 @@ function App() {
 
 			setTodos((allBoards) => {
 				const boardCopy = [...allBoards[source.droppableId]];
+				const taskObj = boardCopy[source.index];
 				boardCopy.splice(source.index, 1);
-				boardCopy.splice(destination?.index, 0, draggableId);
+				boardCopy.splice(destination?.index, 0, taskObj);
 				return { ...allBoards, [source.droppableId]: boardCopy };
 			});
 		}
 		if (destination?.droppableId !== source.droppableId) {
 			setTodos((allBoards) => {
 				const sourceBoard = [...allBoards[source.droppableId]];
+				const taskObj = sourceBoard[source.index];
 				const targetBoard = [
 					...allBoards[destination?.droppableId as any],
 				];
 				sourceBoard.splice(source.index, 1);
-				targetBoard.splice(destination?.index as any, 0, draggableId);
+				targetBoard.splice(destination?.index as any, 0, taskObj);
 				return {
 					...allBoards,
 					[source.droppableId]: sourceBoard,
